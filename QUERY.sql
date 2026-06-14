@@ -16,7 +16,7 @@ CREATE TABLE Matches (
     base_ticket_price DECIMAL(10,2) NOT NULL
 CHECK (base_ticket_price >= 0),
    match_status VARCHAR(50) NOT NULL
-CHECK (match_status IN ('Available', 'Selling Fast', 'Sold Out'))
+CHECK (match_status IN ('Available', 'Selling Fast', 'Sold Out', 'Postponed'))
 );
 
 CREATE TABLE Bookings (
@@ -25,7 +25,7 @@ CREATE TABLE Bookings (
     match_id INT NOT NULL,
     seat_number VARCHAR(20),
    payment_status VARCHAR(50)
-CHECK (payment_status IN ('Confirmed', 'Pending', 'Refunded')),
+CHECK (payment_status IN ('Confirmed', 'Pending', 'Refunded', 'Cancelled')),
   total_cost DECIMAL(10,2) NOT NULL CHECK (total_cost >= 0),
 
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
